@@ -31,5 +31,9 @@ class TeeworldsRatings < Sinatra::Base
     haml :index, :locals => {:players_per_page => players_per_page}
   end
 
+  get '/about' do
+    haml :about
+  end
+
   run! if app_file == $0
 end
