@@ -1,0 +1,12 @@
+.header
+  %h1 Teeworlds Ladder
+
+.content
+  %ul
+    - @players[:players].each do |player|
+      %li
+        %span= player[0]
+        %span= player[1]
+        %span= player[2].to_s
+
+!= paginate @players, items_per_page: players_per_page, labels: {first: '«', last: '»'}, renderer: 'haml'
