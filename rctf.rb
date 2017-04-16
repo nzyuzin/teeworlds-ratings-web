@@ -14,6 +14,7 @@ class TeeworldsRatings < Sinatra::Base
   end
 
   set :haml, :format => :html5
+  set :bind, '0.0.0.0'
 
   def get_players()
     db = SQLite3::Database.new("rctf.db")
