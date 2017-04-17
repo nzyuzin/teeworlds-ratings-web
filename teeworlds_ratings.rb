@@ -29,6 +29,11 @@ class TeeworldsRatings < Sinatra::Base
     haml :index, :locals => {:players_per_page => players_per_page}
   end
 
+  get '/players/:player' do |player_name|
+    @player = Player.where(name: player_name).first
+    haml :player
+  end
+
   get '/about' do
     haml :about
   end
