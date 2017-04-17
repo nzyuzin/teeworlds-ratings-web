@@ -20,6 +20,14 @@ class TeeworldsRatings < Sinatra::Base
     def page
       [params[:page].to_i - 1, 0].max
     end
+
+    def active_page?(path='')
+      request.path_info == path
+    end
+
+    def append_class_on_path(name, path, css_class)
+      haml_tag(:a, name, {:href => path, :class => (css_class if active_page?(path))})
+    end
   end
 
   set :haml, :format => :html5
