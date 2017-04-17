@@ -2,12 +2,19 @@
 %html
   %head
     -##<LOADING CSS AND JS, TILE, DESC., KEYWORDS>
+  %link{:type => "text/css", :rel => "stylesheet", :href => "../css/base.css"}
+  %link{:type => "text/css", :rel => "stylesheet", :href => "../css/skeleton.css"}
+  %link{:type => "text/css", :rel => "stylesheet", :href => "../css/normalize.css"}
   %body
-    %ul
-      %li
-        - link_to_active_page 'Index', '/'
-      %li
-        - link_to_active_page 'About', '/about'
-    =yield ## THE OTHER LAYOUTS WILL BE DISPALYED HERE
+    #menu
+      %a.logo{:href => ""}
+        %img{:src => "../images/teeworlds-logo.png"}
+      %ul
+        %li
+          - link_to_active_page 'Index', '/'
+        %li
+          - link_to_active_page 'About', '/about'
+    #page.container
+      =yield ## THE OTHER LAYOUTS WILL BE DISPALYED HERE
     %footer
       -# FOOTER CONTENT
