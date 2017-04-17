@@ -2,3 +2,4 @@
 .vagrant
 rctf.db
 tools/server_pid
+Gemfile.lock
