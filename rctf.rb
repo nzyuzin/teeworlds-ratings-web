@@ -20,7 +20,6 @@ class TeeworldsRatings < Sinatra::Base
   end
 
   set :haml, :format => :html5
-  set :bind, '0.0.0.0'
 
   get '/' do
     players_per_page = 50
