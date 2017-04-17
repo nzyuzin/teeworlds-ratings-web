@@ -4,7 +4,7 @@
 }
 
 html {
-	background-color: #91c5ff !important;
+	background-color: #224d8a !important; /*#91c5ff*/
 	background-image: url(../images/bg.png) !important;
 	background-repeat: repeat-x !important;
 	background-position: 0 0;
@@ -14,9 +14,9 @@ body {
 	color: #666;
 	background: url(../images/background.png) repeat-x;
 	background-position: 0 150px;
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 12px;
-	line-height: 20px;
+	font-family: Verdana, Arial, Helvetica, 'Droid Sans', sans-serif;
+	font-size: 13px;
+	line-height: 22px;
 	min-height: 575px;
 }
 
@@ -405,6 +405,13 @@ form ul.errorlist li {
 #donate {}
 
 /* ######### footer ######### */
+footer {
+	background-image: url(../images/snow_footer.png);
+    background-repeat: repeat-x;
+    background-position: left top;
+    height: 128px;
+    margin-top: -60px;
+}
 
 #page_foot {
 	text-align: center;
@@ -414,11 +421,6 @@ form ul.errorlist li {
 	padding-bottom: 10px;
 }
 
-/* ######### forum ######### */
-
-#forum #main {
-	width: 1000px;
-}
 
 /* ######### others ######### */
 
