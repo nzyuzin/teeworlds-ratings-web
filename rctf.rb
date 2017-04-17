@@ -1,11 +1,16 @@
-require 'bundler/setup'
+require 'sinatra/activerecord'
 require 'sinatra/base'
 require 'sinatra/paginate'
-require 'sqlite3'
+
+set :database, {adapter: "sqlite3", database: "rctf.db"}
 
 Struct.new('Result', :total, :size, :players)
 
+class Player < ActiveRecord::Base
+end
+
 class TeeworldsRatings < Sinatra::Base
+  register Sinatra::ActiveRecordExtension
   register Sinatra::Paginate
 
   helpers do
@@ -17,18 +22,11 @@ class TeeworldsRatings < Sinatra::Base
   set :haml, :format => :html5
   set :bind, '0.0.0.0'
 
-  def get_players()
-    db = SQLite3::Database.new("rctf.db")
-    rows = db.execute("select name, clan, rating from players")
-    db.close()
-    rows
-  end
-
   get '/' do
     players_per_page = 50
-    player_rows = get_players()
-    displayed_players = player_rows[page * players_per_page, players_per_page]
-    @players = Struct::Result.new(player_rows.length, displayed_players.length, displayed_players)
+    displayed_players = Player.offset(page * players_per_page).
+      order("rating DESC").limit(players_per_page)
+    @players = Struct::Result.new(Player.count, displayed_players.count, displayed_players)
     haml :index, :locals => {:players_per_page => players_per_page}
   end
 
