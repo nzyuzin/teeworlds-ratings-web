@@ -2,12 +2,18 @@
 %html
   %head
     -##<LOADING CSS AND JS, TILE, DESC., KEYWORDS>
+	%link{:type => "text/css", :rel => "stylesheet", :href => "../public/css/base.css"}
+	%link{:type => "text/css", :rel => "stylesheet", :href => "../public/css/skeleton.css"}
+	%link{:type => "text/css", :rel => "stylesheet", :href => "../public/css/normalize.css"}
   %body
-    %ul
-      %li
-        %a{:href => "/"}Index
-      %li
-        %a{:href => "/about"}About
+    #menu
+	  %a.logo{:href => ""}
+	    %img{:src => "../public/images/teeworlds-logo.png"}
+      %ul
+        %li
+          %a{:href => "/"}Index
+        %li
+          %a{:href => "/about"}About
     =yield ## THE OTHER LAYOUTS WILL BE DISPALYED HERE
     %footer
       -# FOOTER CONTENT
