@@ -25,8 +25,12 @@ class TeeworldsRatings < Sinatra::Base
       request.path_info == path
     end
 
-    def append_class_on_path(name, path, css_class)
-      haml_tag(:a, name, {:href => path, :class => (css_class if active_page?(path))})
+    def append_class_on_path(tag, attrs, name, path, css_class)
+      haml_tag(tag, name, attrs.merge!(class: (css_class if active_page?(path))))
+    end
+
+    def link_to_active_page(name, path, css_class='active')
+      append_class_on_path :a, {:href => path}, name, path, css_class
     end
   end
 

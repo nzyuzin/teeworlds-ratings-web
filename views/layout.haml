@@ -11,9 +11,9 @@
         %img{:src => "../images/teeworlds-logo.png"}
       %ul
         %li
-          - append_class_on_path 'Index', '/', 'active'
+          - link_to_active_page 'Index', '/'
         %li
-          - append_class_on_path 'About', '/about', 'active'
+          - link_to_active_page 'About', '/about'
     #page.container
       =yield ## THE OTHER LAYOUTS WILL BE DISPALYED HERE
     %footer
