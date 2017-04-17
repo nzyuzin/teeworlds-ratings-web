@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
 
-bundle exec rackup &> /dev/null &
-echo $! > ./tools/server_pid
+if [ ! -e ./tools/server_pid ]; then
+  bundle exec rackup -P ./tools/server_pid &> /dev/null &
+else
+  echo "Server is running already."
+fi
