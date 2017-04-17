@@ -1,24 +1,20 @@
-#page.container
-  .row
+.row
     .twelve.columns
-      .box
-        #header_box
-          %h1 Teeworlds Ladder
+      %h1 Teeworlds Ladder
 
-  .row
-    .ten.columns
-      %table.u-full-width
-        %thead
+.row
+  .ten.columns
+    %table.u-full-width
+      %thead
+        %tr
+          %th Nickname
+          %th Clan
+          %th Rating
+        - @players[:players].each do |player|
           %tr
-            %th Nickname
-            %th Clan
-            %th Rating
-          - @players[:players].each do |player|
-            %tr
-              %td= player.name
-              %td= player.clan
-              %td= player.rating.to_s
-    .two.columns
-      #sidebar test
-
+            %td= player.name
+            %td= player.clan
+            %td= player.rating.to_s
+  .two.columns
+    #sidebar test
 != paginate @players, items_per_page: players_per_page, labels: {first: '«', last: '»'}, renderer: 'haml'
