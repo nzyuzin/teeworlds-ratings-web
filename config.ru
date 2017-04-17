@@ -3,5 +3,5 @@ require 'bundler'
 
 Bundler.require
 
-require './rctf'
+require './teeworlds_ratings'
 run TeeworldsRatings
