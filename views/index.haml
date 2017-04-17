@@ -12,8 +12,10 @@
           %th Rating
         - @players[:players].each do |player|
           %tr
-            %td= player.name
-            %td= player.clan
+            %td
+              %a{href: "players/#{player.name}"}= player.name
+            %td
+              %a{href: "clans/#{player.clan}"}= player.clan
             %td= player.rating.to_s
   .two.columns
     #sidebar test
