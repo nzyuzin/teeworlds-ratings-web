@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-bundle exec ruby rctf.rb &> /dev/null &
+bundle exec rackup &> /dev/null &
 echo $! > ./tools/server_pid
