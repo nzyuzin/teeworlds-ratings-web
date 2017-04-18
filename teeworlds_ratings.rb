@@ -1,3 +1,4 @@
+require 'erb'
 require 'sinatra/activerecord'
 require 'sinatra/base'
 require 'sinatra/paginate'
@@ -17,6 +18,10 @@ class TeeworldsRatings < Sinatra::Base
   register Sinatra::Paginate
 
   helpers do
+    def encode_url(url)
+      ERB::Util.url_encode(url)
+    end
+
     def page
       [params[:page].to_i - 1, 0].max
     end
