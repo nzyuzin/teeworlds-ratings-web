@@ -8,7 +8,7 @@
           %th Nickname
           %th Clan
           %th Rating
-        - @players[:players].each do |player|
+        - @players.each do |player|
           %tr
             %td
               %a{href: "players/#{encode_url player.name}"}= player.name
@@ -17,4 +17,4 @@
             %td= player.rating.to_s
   .five.wide.column#sidebar
     %p test
-!= paginate @players, items_per_page: players_per_page, labels: {first: '«', last: '»'}, renderer: 'haml'
+= will_paginate @players
