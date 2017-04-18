@@ -1,10 +1,8 @@
-.row
-  .twelve.columns
+.ui.grid
+  .eleven.wide.column.container#main
     %h1 Teeworlds Ladder
 
-.row
-  .ten.columns
-    %table.u-full-width
+    %table.ui.basic.table
       %thead
         %tr
           %th Nickname
@@ -17,6 +15,6 @@
             %td
               %a{href: "clans/#{encode_url player.clan}"}= player.clan
             %td= player.rating.to_s
-  .two.columns
-    #sidebar test
+  .five.wide.column#sidebar
+    %p test
 != paginate @players, items_per_page: players_per_page, labels: {first: '«', last: '»'}, renderer: 'haml'
