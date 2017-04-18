@@ -25,5 +25,6 @@ Using
 To launch the web server execute
 `./tools/start_server.sh`
 from the root of the repository
+
 To stop the server execute
 `./tools/stop_server.sh`
