@@ -56,6 +56,4 @@ class TeeworldsRatings < Sinatra::Base
   get '/about' do
     haml :about
   end
-
-  run! if app_file == $0
 end
