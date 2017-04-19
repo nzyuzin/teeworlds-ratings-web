@@ -1,4 +1,4 @@
-.ui.grid
+.ui.stackable.grid
   .eleven.wide.column.container#main
     %h1 Teeworlds Ladder
 
@@ -15,6 +15,7 @@
             %td
               %a{href: "clans/#{encode_url player.clan}"}= player.clan
             %td= player.rating.to_s
+    #pagination
+      = will_paginate{:container => "false"} @players
   .five.wide.column#sidebar
     %p test
-  = will_paginate @players
