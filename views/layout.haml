@@ -20,4 +20,9 @@
     #page.ui.container
       =yield ## THE OTHER LAYOUTS WILL BE DISPALYED HERE
     %footer
-      -# FOOTER CONTENT
+      .ui.container#foot
+        .center.aligned.column
+          -# FOOTER CONTENT
+          %a.ui.inverted.icon.basic.button{"data-position" => "bottom center", "data-tooltip" => "Back to Top", :href => "#"}
+            %i.arrow.up.icon
+          %p#copy © 2017 site.com
