@@ -16,6 +16,6 @@
               %a{href: "clans/#{encode_url player.clan}"}= player.clan
             %td= player.rating.to_s
     #pagination
-      = will_paginate{:container => "false"} @players
+      = will_paginate @players, :container => false
   .five.wide.column#sidebar
     %p test
