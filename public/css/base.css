@@ -397,6 +397,9 @@ footer {
 /* Mobile */
 
 @media only screen and (max-width: 767px) {
+	.mobile-hide{
+        display: none !important;
+    }
 
 /* ### Pagination ### */  
   
@@ -445,4 +448,46 @@ footer {
  	body {
  		padding-bottom: 0;
  	}
+
+ 	/* ### Menu ### */
+
+ 	#mobilemenu{
+		display:none; 
+		width:100%; 
+		margin-top: -15px !important;
+ 	}
+
+
+ 	#logo {
+ 		top:5px;
+ 	}
+
+ 	#logo img {
+ 		max-width: 100%;
+ 	}
+}
+
+/* Tablet */
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .tablet-hide{
+        display: none !important;
+    }
+}
+
+/* Small Monitor */
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .small-hide{
+        display: none !important;
+    }
+}
+
+
+/* Large Monitor */
+
+@media only screen and (min-width: 1200px) {
+    .large-hide{
+        display: none !important;
+    }
 }
