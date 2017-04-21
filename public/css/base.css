@@ -390,8 +390,63 @@ footer {
 
 #pagination
     span .disabled {
-  pointer-events: none;
+  	pointer-events: none;
     color: rgba(40, 40, 40, 0.3) !important;
+}
+
+#mobilemenu{
+	display:none; 
+	width:100%; 
+	margin-top: -15px !important;
+ }
+
+#mobilemenu a{
+	position: relative;
+  	vertical-align: middle;
+  	line-height: 1;
+  	text-decoration: none;
+	-webkit-tap-highlight-color: transparent;
+ 	-webkit-box-flex: 0;
+	-webkit-flex: 0 0 auto;
+	-ms-flex: 0 0 auto;
+	flex: 0 0 auto;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background: none;
+	padding: 0.92857143em 1.14285714em;
+  	text-transform: none;
+  	color: rgba(0, 0, 0, 0.87);
+  	font-weight: normal;
+  	-webkit-transition: background 0.1s ease, box-shadow 0.1s ease, color 0.1s ease;
+  	transition: background 0.1s ease, box-shadow 0.1s ease, color 0.1s ease;
+}
+
+#mobilemenu a:before {
+	position: absolute;
+	content: '';
+	top: 0%;
+	right: 0px;
+	height: 100%;
+	width: 1px;
+	background: rgba(34, 36, 38, 0.1);
+}
+#mobilemenu a {
+    display: block;
+    background: none;
+    border-top: none;
+    border-right: none;
+}
+#mobilemenu a.active {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 0em;
+    box-shadow: none;
+}
+
+#mobilemenu a:hover {
+  	background: rgba(0, 0, 0, 0.05);
+  	color: rgba(0, 0, 0, 0.95);
 }
 
 /* Mobile */
@@ -403,9 +458,9 @@ footer {
 
 /* ### Pagination ### */  
   
-  #pagination {
-    display:grid;
-  }
+  	#pagination {
+    	display:grid;
+  	}
 
  	#pagination a,em,span{
    		display:grid;
@@ -450,13 +505,6 @@ footer {
  	}
 
  	/* ### Menu ### */
-
- 	#mobilemenu{
-		display:none; 
-		width:100%; 
-		margin-top: -15px !important;
- 	}
-
 
  	#logo {
  		top:5px;
