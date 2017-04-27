@@ -5,14 +5,14 @@
         .ui.form
           .field
             %label Username
-              .ui.left.icon.input
-                %input{:type => "text", :placeholder => "Username"}
-                  %i.user.icon
+            .ui.left.icon.input
+            %input{:type => "text", :placeholder => "Username"}
+              %i.user.icon
           .field
             %label Password
-              .ui.left.icon.input
-                %input{:type => "password"}
-                  %i.lock.icon
+            .ui.left.icon.input
+            %input{:type => "password"}
+              %i.lock.icon
           .ui.blue.submit.button Login
       .divider-column
         .ui.vertical.divider Or
@@ -28,13 +28,13 @@
           %th Nickname
           %th Clan
           %th Rating
-        - @players.each do |player|
+        - @players.each_index do |i|
           %tr
             %td
-              %a{href: "players/#{encode_url player.name}"}= player.name
+              %a{href: "players/#{encode_url @players[i].name}"}= @players[i].name
             %td
-              %a{href: "clans/#{encode_url player.clan}"}= player.clan
-            %td= player.rating.to_s
+              %a{href: "clans/#{encode_url @players[i].clan}"}= @players[i].clan
+            %td= @players[i].rating.to_s
     =# will_paginate @players, :class => '', :id => 'pagination' 
   .five.wide.column#sidebar
     %p test
