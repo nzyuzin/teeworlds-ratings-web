@@ -388,8 +388,7 @@ footer {
     box-shadow: none;
 }
 
-#pagination
-    span .disabled {
+#pagination span .disabled {
   	pointer-events: none;
     color: rgba(40, 40, 40, 0.3) !important;
 }
