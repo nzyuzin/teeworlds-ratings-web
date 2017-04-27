@@ -1,5 +1,25 @@
 .ui.stackable.grid
   .eleven.wide.column.container
+    .ui.two.column.middle.aligned.very.relaxed.stackable.grid
+      .column
+        .ui.form
+          .field
+            %label Username
+              .ui.left.icon.input
+                %input{:type => "text", :placeholder => "Username"}
+                  %i.user.icon
+          .field
+            %label Password
+              .ui.left.icon.input
+                %input{:type => "password"}
+                  %i.lock.icon
+          .ui.blue.submit.button Login
+      .divider-column
+        .ui.vertical.divider Or
+      .center.aligned.column
+        .ui.big.green.labeled.button
+          %i.signup.icon Sign up
+    
     %h1 Teeworlds Ladder
 
     %table.ui.basic.table
