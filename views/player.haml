@@ -14,8 +14,8 @@
       %th Date
   - @player.games.each do |game|
     %tr
-      %th= game.gametype
-      %th= game.map
-      %th= game.time
-      %th= game.result
-      %th= game.date
+      %td= game.gametype
+      %td= game.map
+      %td= game.time
+      %td= game.result
+      %td= game.date
