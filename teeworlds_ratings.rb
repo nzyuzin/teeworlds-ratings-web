@@ -5,11 +5,41 @@ require 'sinatra/base'
 require 'will_paginate'
 
 class Player
-  attr_accessor :name, :clan, :rating
+  attr_accessor :name, :clan, :rating, :games
+
+  def self.parse(player_hash)
+    res = Player.new
+    res.name = player_hash[:name]
+    res.clan = player_hash[:clan]
+    res.rating = player_hash[:rating]
+    res
+  end
 end
 
 class Clan
   attr_accessor :name, :rating, :players
+
+  def self.parse(clan_hash)
+    res = Clan.new
+    res.name = clan_hash[:clan_name]
+    res.rating = clan_hash[:clan_rating]
+    res
+  end
+end
+
+class Game
+  attr_accessor :id, :gametype, :map, :time, :result, :date
+
+  def self.parse(game_hash)
+    res = Game.new
+    res.id = game_hash[:game_id]
+    res.gametype = game_hash[:gametype]
+    res.map = game_hash[:map]
+    res.time = game_hash[:game_time]
+    res.result = game_hash[:game_result]
+    res.date = game_hash[:game_date]
+    res
+  end
 end
 
 class TeeworldsRatings < Sinatra::Base
@@ -33,14 +63,6 @@ class TeeworldsRatings < Sinatra::Base
     end
   end
 
-  def parse_player(player_hash)
-    res = Player.new
-    res.name = player_hash[:name]
-    res.clan = player_hash[:clan]
-    res.rating = player_hash[:rating]
-    res
-  end
-
   def get_player(name)
     request = {:message_type => "external_message", :message_content =>
      {:external_message_type => "data_request", :external_message_content =>
@@ -51,10 +73,13 @@ class TeeworldsRatings < Sinatra::Base
     s.puts request_json
     response_json = s.gets
     s.close
+    puts response_json
     players_json = JSON.parse(response_json, symbolize_names: true)
-    puts players_json
-    player = players_json[:message_content][:external_message_content][:data_request_response_content][:player]
-    parse_player player
+    player_games = players_json[:message_content][:external_message_content][:data_request_response_content]
+    player = player_games[:player]
+    res = Player.parse player
+    res.games = player_games[:games].map { |game| Game.parse(game) }
+    res
   end
 
   def get_players(offset, limit)
@@ -69,7 +94,7 @@ class TeeworldsRatings < Sinatra::Base
     s.close
     players_json = JSON.parse(response_json, symbolize_names: true)
     players = players_json[:message_content][:external_message_content][:data_request_response_content]
-    players.map { |p| parse_player p }
+    players.map { |p| Player.parse(p) }
   end
 
   def get_clan(name)
@@ -84,15 +109,8 @@ class TeeworldsRatings < Sinatra::Base
     s.close
     clan_json = JSON.parse(response_json, symbolize_names: true)
     clan = clan_json[:message_content][:external_message_content][:data_request_response_content]
-    res = parse_clan(clan[:clan])
-    res.players = clan[:players].map { |p| parse_player p }
-    res
-  end
-
-  def parse_clan(clan_json)
-    res = Clan.new
-    res.name = clan_json[:clan_name]
-    res.rating = clan_json[:clan_rating]
+    res = Clan.parse(clan[:clan])
+    res.players = clan[:players].map { |p| Player.parse p }
     res
   end
 

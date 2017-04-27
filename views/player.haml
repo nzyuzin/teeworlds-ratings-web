@@ -1,3 +1,21 @@
 %h3= @player.name
 %h4= @player.clan
 %h5= @player.rating
+
+%h4 Latest games
+
+%table.ui.basic.table.games
+  %thead
+    %tr
+      %th Gametype
+      %th Map
+      %th Length
+      %th Result
+      %th Date
+  - @player.games.each do |game|
+    %tr
+      %th= game.gametype
+      %th= game.map
+      %th= game.time
+      %th= game.result
+      %th= game.date
