@@ -538,3 +538,8 @@ footer {
         display: none !important;
     }
 }
+
+.divider-column {
+  position: relative;
+  padding: 0 !important;
+}

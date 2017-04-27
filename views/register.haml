@@ -1,0 +1,36 @@
+.ui.stackable.grid
+  .eleven.wide.column.container
+    .wide.column.container
+      .ui.attached.message
+        .header Welcome to our site!
+        %p Fill out the form below to sign-up for a new account
+      %form.ui.form.attached.fluid.segment{:action => "/action_page.php"}
+        .field
+          %label Username
+          %input#username{:placeholder => "Enter Username", :type => "text"}
+        .two.fields
+          .field
+            %label Password
+            %input#password1{:name => "password1", :placeholder => "Enter password", :type => "password"}
+          .field
+            %label Password (again)
+            %input#password2{:name => "password2", :placeholder => "Enter password again", :type => "password"}
+        .two.fields
+          .field
+            %label E-mail
+            %input#email1{:name => "email1", :placeholder => "tee@tee.com", :type => "text"}
+          .field
+            %label E-mail (again)
+            %input#email2{:name => "email2", :placeholder => "tee@tee.com", :type => "text"}
+        .inline.field
+          .ui.checkbox
+            %input#terms{:type => "checkbox"}/
+            %label{:for => "terms"} I agree to the terms and conditions
+        .ui.blue.submit.button Submit
+        .ui.error.message
+      .ui.bottom.attached.warning.message
+        %i.icon.help
+          Already signed up?
+            %a{:href => "#"} 
+              Login here
+                instead.
