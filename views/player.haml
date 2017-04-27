@@ -15,9 +15,9 @@
       %th Rating Change
   - @player.games.each do |game|
     %tr
-      %th= game.gametype
-      %th= game.map
-      %th= game.time
-      %th= game.result
-      %th= game.date
-      %th= if game.rating_change > 0 then "+" + game.rating_change.to_s else game.rating_change end
+      %td= game.gametype
+      %td= game.map
+      %td= game.time
+      %td= game.result
+      %td= game.date
+      %td= if game.rating_change > 0 then "+" + game.rating_change.to_s else game.rating_change end

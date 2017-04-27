@@ -1,5 +1,5 @@
-.ui.grid
-  .eleven.wide.column.container#main
+.ui.stackable.grid
+  .eleven.wide.column.container
     %h1 Teeworlds Ladder
 
     %table.ui.basic.table
@@ -15,6 +15,6 @@
             %td
               %a{href: "clans/#{encode_url player.clan}"}= player.clan
             %td= player.rating.to_s
+    =# will_paginate @players, :class => '', :id => 'pagination' 
   .five.wide.column#sidebar
     %p test
-=# will_paginate @players
