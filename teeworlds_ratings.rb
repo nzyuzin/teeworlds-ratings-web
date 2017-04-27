@@ -28,7 +28,7 @@ class Clan
 end
 
 class Game
-  attr_accessor :id, :gametype, :map, :time, :result, :date
+  attr_accessor :id, :gametype, :map, :time, :result, :date, :rating_change
 
   def self.parse(game_hash)
     res = Game.new
@@ -38,6 +38,7 @@ class Game
     res.time = game_hash[:game_time]
     res.result = game_hash[:game_result]
     res.date = game_hash[:game_date]
+    res.rating_change = game_hash[:rating_change]
     res
   end
 end
