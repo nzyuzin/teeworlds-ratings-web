@@ -1,0 +1,41 @@
+!!!5
+%html
+  %head
+    = csrf_meta_tags
+    %meta{:charset => "utf-8"}/
+    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    -#%link{:type => "text/css", :rel => "stylesheet", :href => "/css/base.css"}
+    -#%link{:type => "text/css", :rel => "stylesheet", :href => "/css/semantic.css"}
+    -#%link{:type => "text/css", :rel => "stylesheet", :href => "/css/normalize.css"}
+    %script{:type => "text/javascript", :src  => "http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"}
+    %script{:type => "text/javascript", :src  => "http://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"}
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    .tablet-hide.small-hide.large-hide.narrow.row
+      .ui.inverted.navbar.menu
+        %a.brand.item{:href => "#"}
+          Project Name
+        .right.menu.open
+          %a.menu.item{:href => ""}
+            %i.content.icon
+      .ui.vertical.navbar.menu#mobilemenu
+        - link_to_active_page 'Index', '/'
+        - link_to_active_page 'About', '/about'
+    #menu.ui.grid.container
+      %div.left.floated.eight.wide.column#logo
+        %a{:href => ""}
+          = image_tag "teeworlds-logo.png"
+      %ul.right.floated.eight.wide.column.mobile-hide
+        %li
+          - link_to_active_page 'Index', '/'
+        %li
+          - link_to_active_page 'About', '/about'
+    #page.ui.container
+      =yield
+    %footer
+      .ui.container#foot
+        .center.aligned.column
+          %a.ui.inverted.icon.basic.button{"data-position" => "bottom center", "data-tooltip" => "Back to Top", :href => "#"}
+            %i.arrow.up.icon
+          %p#copy © 2017 site.com

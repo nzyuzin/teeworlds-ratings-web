@@ -1,7 +1,5 @@
-require 'rubygems'
-require 'bundler'
+# This file is used by Rack-based servers to start the application.
 
-Bundler.require
+require_relative 'config/environment'
 
-require './teeworlds_ratings'
-run TeeworldsRatings
+run Rails.application
