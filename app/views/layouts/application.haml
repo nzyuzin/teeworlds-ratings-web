@@ -24,8 +24,7 @@
         - link_to_active_page 'About', '/about'
     #menu.ui.grid.container
       %div.left.floated.eight.wide.column#logo
-        %a{:href => ""}
-          = image_tag "teeworlds-logo.png"
+        = link_to (image_tag 'teeworlds-logo.png'), '/'
       %ul.right.floated.eight.wide.column.mobile-hide
         %li
           - link_to_active_page 'Index', '/'
