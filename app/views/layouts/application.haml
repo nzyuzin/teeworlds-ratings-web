@@ -32,6 +32,8 @@
         %li
           - link_to_active_page 'About', '/about'
     #page.ui.container
+      %p.notice= notice
+      %p.alert= alert
       =yield
     %footer
       .ui.container#foot
