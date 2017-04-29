@@ -8,6 +8,8 @@ end
 
   root to: 'news#index'
 
+  get '/users/:id' => 'users#show'
+
   get '/news/:id' => 'news#show'
 
   get '/about' => 'about#index'
@@ -15,6 +17,8 @@ end
   get '/players' => 'players#index'
 
   get '/players/:player_name' => 'players#show'
+
+  post '/players/claim_name' => 'players#claim_name'
 
   get '/clans/:clan_name' => 'clans#show'
 

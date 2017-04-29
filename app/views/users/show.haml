@@ -1,0 +1,9 @@
+%h3= @user.email
+
+%p Claim player name:
+= form_tag '/players/claim_name' do
+  %label Player name
+  = text_field_tag 'player[name]'
+  %label Password
+  = password_field_tag 'player[password]'
+  %button Submit

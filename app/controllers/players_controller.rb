@@ -42,4 +42,8 @@ class PlayersController < ApplicationController
     player_name = params[:player_name]
     @player = get_player player_name
   end
+
+  def claim_name
+    puts "Claim name #{params[:player_name]}"
+  end
 end
