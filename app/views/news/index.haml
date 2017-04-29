@@ -1,0 +1,45 @@
+.ui.stackable.grid
+  .eleven.wide.column.container
+    - unless user_signed_in?
+      .ui.two.column.middle.aligned.very.relaxed.stackable.grid
+        .column
+          = form_tag session_path(:user), class: "ui form" do
+            .field
+              %label Username
+              .ui.left.icon.input
+                = text_field_tag 'user[email]', '', placeholder: 'Username'
+                %i.user.icon
+            .field
+              %label Password
+              .ui.left.icon.input
+                = password_field_tag 'user[password]'
+                %i.lock.icon
+            = check_box_tag 'user[remember_me]'
+            = label_tag 'user[remember_me]', 'Remember me'
+            = link_to "Forgot your password?", new_password_path(:user)
+            %button.ui.blue.submit.button Login
+        .divider-column
+          .ui.vertical.divider Or
+        .center.aligned.column
+          .ui.big.green.labeled.icon.button
+            %i.signup.icon
+            = link_to('Sign up', new_user_registration_path)
+
+    - if user_signed_in?
+      %p
+        Hello,
+        = link_to current_user.email, "/users/#{current_user.id}"
+        = link_to('Sign out', destroy_user_session_path, :method => :delete)
+
+    %h1 Teeworlds Ladder
+
+    %h2 News:
+    - @news.each do |entry|
+      %h3.news.title= simple_format (link_to entry.title, "/news/#{entry.id}")
+      %p.news.body= simple_format entry.body
+      %p.news.time= entry.created_at
+      %br
+    = will_paginate @news, :class => '', :id => 'pagination'
+
+  .five.wide.column#sidebar
+    %p test
