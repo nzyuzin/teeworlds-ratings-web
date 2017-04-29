@@ -6,9 +6,6 @@
     %meta{:charset => "utf-8"}/
     %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-    -#%link{:type => "text/css", :rel => "stylesheet", :href => "/css/base.css"}
-    -#%link{:type => "text/css", :rel => "stylesheet", :href => "/css/semantic.css"}
-    -#%link{:type => "text/css", :rel => "stylesheet", :href => "/css/normalize.css"}
     %script{:type => "text/javascript", :src  => "http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"}
     %script{:type => "text/javascript", :src  => "http://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"}
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
@@ -22,6 +19,7 @@
             %i.content.icon
       .ui.vertical.navbar.menu#mobilemenu
         - link_to_active_page 'Index', '/'
+        - link_to_active_page 'Players', '/players'
         - link_to_active_page 'About', '/about'
     #menu.ui.grid.container
       %div.left.floated.eight.wide.column#logo
@@ -29,6 +27,8 @@
       %ul.right.floated.eight.wide.column.mobile-hide
         %li
           - link_to_active_page 'Index', '/'
+        %li
+          - link_to_active_page 'Players', '/players'
         %li
           - link_to_active_page 'About', '/about'
     #page.ui.container
