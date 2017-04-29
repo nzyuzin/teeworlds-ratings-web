@@ -17,7 +17,7 @@ module Casein
     end
 
     def new
-      @casein_page_title = 'Add a new news'
+      @casein_page_title = 'Add a news entry'
       @news = News.new
     end
 
@@ -25,10 +25,10 @@ module Casein
       @news = News.new news_params
 
       if @news.save
-        flash[:notice] = 'News created'
+        flash[:notice] = 'News entry created'
         redirect_to casein_news_index_path
       else
-        flash.now[:warning] = 'There were problems when trying to create a new news'
+        flash.now[:warning] = 'There were problems when trying to create a news entry'
         render action: :new
       end
     end
@@ -39,10 +39,10 @@ module Casein
       @news = News.find params[:id]
 
       if @news.update_attributes news_params
-        flash[:notice] = 'News has been updated'
+        flash[:notice] = 'News entry has been updated'
         redirect_to casein_news_index_path
       else
-        flash.now[:warning] = 'There were problems when trying to update this news'
+        flash.now[:warning] = 'There were problems when trying to update this news entry'
         render action: :show
       end
     end
@@ -51,7 +51,7 @@ module Casein
       @news = News.find params[:id]
 
       @news.destroy
-      flash[:notice] = 'News has been deleted'
+      flash[:notice] = 'News entry has been deleted'
       redirect_to casein_news_index_path
     end
 

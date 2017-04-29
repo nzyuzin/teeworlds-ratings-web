@@ -24,8 +24,9 @@
 
     %h2 News:
     - @news.each do |entry|
-      %h3.news.title= link_to entry.title, "/news/#{entry.id}"
-      %p.news.body= entry.body
+      %h3.news.title= simple_format (link_to entry.title, "/news/#{entry.id}")
+      %p.news.body= simple_format entry.body
+      %p.news.time= entry.created_at
       %br
     = will_paginate @news, :class => '', :id => 'pagination'
 
