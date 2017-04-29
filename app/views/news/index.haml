@@ -21,8 +21,8 @@
         .divider-column
           .ui.vertical.divider Or
         .center.aligned.column
-          = link_to('Sign up', new_user_registration_path, :class => 'ui big green labeled icon button')
-            %i.signup.icon
+          %i.signup.icon
+          = link_to('Sign up', new_user_registration_path, :class="ui big green labeled icon button")
 
     - if user_signed_in?
       %p
@@ -39,5 +39,6 @@
       %p.news.time= entry.created_at
       %br
     = will_paginate @news, :class => '', :id => 'pagination'
+
   .five.wide.column#sidebar
     %p test
