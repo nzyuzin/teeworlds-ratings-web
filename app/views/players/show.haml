@@ -5,9 +5,8 @@
 %h4= @user.player_clan
 %h5= @player.rating
 
-%p= "Ingame key: #{@player.secret_key}"
-
 - if user_signed_in? && @user.id == current_user.id
+  %p= "Ingame key: #{@player.secret_key}"
   = link_to 'Edit profile', "/users/edit"
 
 %h4 Latest games
