@@ -1,6 +1,14 @@
-%h3= @player.name
-%h4= @player.clan
+%h3
+  = @player.name
+  - if @user.country
+    = content_tag(:i, '', class: "#{@user.country.downcase} flag")
+%h4= @user.player_clan
 %h5= @player.rating
+
+%p= "Ingame key: #{@player.secret_key}"
+
+- if user_signed_in? && @user.id == current_user.id
+  = link_to 'Edit profile', "/users/edit"
 
 %h4 Latest games
 

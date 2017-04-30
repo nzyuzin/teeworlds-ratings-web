@@ -1,14 +1,12 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  devise_for :users, :controllers => { :registrations => "registrations" }
 #Casein routes
 namespace :casein do
     resources :news
 end
 
   root to: 'news#index'
-
-  get '/users/:id' => 'users#show'
 
   get '/news/:id' => 'news#show'
 
