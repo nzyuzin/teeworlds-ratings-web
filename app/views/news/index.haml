@@ -19,7 +19,7 @@
                 .ui.checkbox
                   = check_box_tag 'user[remember_me]'
                   = label_tag 'user[remember_me]', 'Remember me'
-              .field  
+              .field
                 = link_to "Forgot your password?", new_password_path(:user)
             %button.ui.blue.submit.button Login
         .divider-column
@@ -37,9 +37,10 @@
 
     %h2 News:
     - @news.each do |entry|
-      %h3.news.title= simple_format (link_to entry.title, "/news/#{entry.id}")
-      %p.news.body= simple_format entry.body
-      %p.news.time= entry.created_at
+      .ui.basic.segment
+        %h3.news.title= simple_format (link_to entry.title, "/news/#{entry.id}")
+        %p.news.body= simple_format entry.body
+        %p.news.time= entry.created_at
       %br
     = will_paginate @news, :class => '', :id => 'pagination'
 
