@@ -16,8 +16,7 @@ Setting up
 Execute the following command before starting the server the first time
 `bundle install`
 
-Once launched, server will look for database file which should be placed in the root directory of the repo.
-Instructions to set up the databse are given in https://github.com/nzyuzin/teeworlds-ratings
+Once launched, the server will use a https://github.com/nzyuzin/teeworlds-ratings server to query for the game related info.
 
 Using
 -----
