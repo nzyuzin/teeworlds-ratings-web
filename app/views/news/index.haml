@@ -21,8 +21,9 @@
         .divider-column
           .ui.vertical.divider Or
         .center.aligned.column
-          = link_to('Sign up', new_user_registration_path, :class => "ui big green labeled icon button")
-            = content_tag(:i, '', class: "signup icon")
+          .ui.big.green.labeled.icon.button
+            %i.signup.icon
+              = link_to('Sign up', new_user_registration_path)
 
     - if user_signed_in?
       %p
