@@ -35,8 +35,14 @@
         %li
           - link_to_active_page 'About', '/about'
     #page.ui.container
-      .ui.message= notice
-      .ui.warning.message= alert
+      - if notice
+        .ui.success.message= notice
+      - else 
+        .ui.hidden.success.message
+      - if alert
+        .ui.warning.message= alert
+      - else
+        .ui.hidden.warning.message
       =yield
     %footer
       .ui.container#foot
