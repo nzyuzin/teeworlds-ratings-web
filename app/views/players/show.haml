@@ -27,8 +27,8 @@
       %td= format_game_length game.time
       %td
         - if game.result == 'Win'
-          %p.ui.green.label
+          %p.ui.green.label= game.result
         -else
-          %p.ui.red.label
+          %p.ui.red.label= game.result
       %td= game.date
       %td= if game.rating_change > 0 then "+" + game.rating_change.to_s else game.rating_change end
