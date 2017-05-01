@@ -5,9 +5,9 @@
         .column
           = form_tag session_path(:user), class: "ui form" do
             .field
-              %label Username
+              %label E-mail
               .ui.left.icon.input
-                = text_field_tag 'user[email]', '', placeholder: 'Username'
+                = text_field_tag 'user[email]', '', placeholder: 'E-mail'
                 %i.user.icon
             .field
               %label Password
@@ -21,9 +21,7 @@
         .divider-column
           .ui.vertical.divider Or
         .center.aligned.column
-          .ui.big.green.labeled.icon.button
-            %i.signup.icon
-            = link_to('Sign up', new_user_registration_path)
+          = link_to (content_tag(:i, '', class: "signup icon") + 'Sign up'), new_user_registration_path, :class => "ui big green labeled icon button"
 
     - if user_signed_in?
       %p
