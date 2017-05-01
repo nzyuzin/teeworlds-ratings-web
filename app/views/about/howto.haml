@@ -1,0 +1,20 @@
+%h2 How to use rteeworlds rating system
+
+%ol
+  %li Sign up on the website
+  %li Sign in and check the secret key on your player's profile
+  %li
+    %p
+      Use the secret key to authenticate on the teeworlds server:
+      %br
+      To authenticate you need to enter your secret key in the rcon password panel appending "rteeworlds:" before the key. For example, if my secret key was "skey", then I would enter "rteeworlds:skey". This can be simplified with the bind:
+      %pre bind BUTTON "rcon_auth rteeworlds:[your-secret-key]"
+      However, If you have a rcon access to the server already, then this approach wouldn't work. To authenticate in such case enter "rteeworlds_auth [your-secret-key]" in the rcon.
+      %br
+      To avoid manual work, this bind will work in both cases, independent of whether you have the rcon access or not:
+      %pre bind BUTTON "rcon_auth rteeworlds:[your-secret-key]; rcon rteeworlds_auth [your-secret-key]"
+      %em Note that you will have to enter your secret twice in this bind.
+  %li Vote "Start rated game" on the server or issue "start_rated_game" rcon command
+  %li Have fun!
+
+

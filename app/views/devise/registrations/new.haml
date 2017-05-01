@@ -1,0 +1,33 @@
+%h2 Sign up
+= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+  = devise_error_messages!
+  .field
+    = f.label :email
+    %br
+    = f.email_field :email, autofocus: true
+  .field
+    = f.label :player_name
+    %br
+    = f.text_field :player_name
+  .field
+    = f.label :player_clan
+    %br
+    = f.text_field :player_clan
+  .field
+    = f.label :country
+    %br
+    = f.country_select :country, include_blank: true
+  .field
+    = f.label :password
+    - if @minimum_password_length
+      %em
+        (#{@minimum_password_length} characters minimum)
+    %br
+    = f.password_field :password, autocomplete: "off"
+  .field
+    = f.label :password_confirmation
+    %br
+    = f.password_field :password_confirmation, autocomplete: "off"
+  .actions
+    = f.submit "Sign up"
+= render "devise/shared/links"

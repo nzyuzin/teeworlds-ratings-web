@@ -20,6 +20,7 @@
       .ui.vertical.navbar.menu#mobilemenu
         - link_to_active_page 'Index', '/'
         - link_to_active_page 'Players', '/players'
+        - link_to_active_page 'How to', '/howto'
         - link_to_active_page 'About', '/about'
     #menu.ui.grid.container
       %div.left.floated.eight.wide.column#logo
@@ -29,6 +30,8 @@
           - link_to_active_page 'Index', '/'
         %li
           - link_to_active_page 'Players', '/players'
+        %li
+          - link_to_active_page 'How to', '/howto'
         %li
           - link_to_active_page 'About', '/about'
     #page.ui.container
