@@ -12,6 +12,8 @@ end
 
   get '/about' => 'about#index'
 
+  get '/howto' => 'about#howto'
+
   get '/players' => 'players#index'
 
   get '/players/:player_name' => 'players#show'
