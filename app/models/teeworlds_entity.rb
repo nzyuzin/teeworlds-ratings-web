@@ -10,7 +10,12 @@ class TeeworldsEntity
     s.puts request_json
     response_json = s.gets
     s.close
-    JSON.parse(response_json, symbolize_names: true)[:message_content][:external_message_content]
+    parsed_response = JSON.parse(response_json, symbolize_names: true)
+    if parsed_response[:message_type] == 'error' then
+      raise parsed_response[:message_content]
+    else
+      parsed_response[:message_content][:external_message_content]
+    end
   end
 
   def self.build_external_request(message_type, message_content)
