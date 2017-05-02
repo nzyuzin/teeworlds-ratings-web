@@ -6,10 +6,19 @@ class TeeworldsEntity
 
   def self.send_request(request)
     request_json = JSON.generate(request)
-    s = TCPSocket.new '127.0.0.1', 12488
-    s.puts request_json
-    response_json = s.gets
-    s.close
+    s = nil
+    begin
+      s = TCPSocket.new Rails.configuration.teeworlds_ratings_ip, Rails.configuration.teeworlds_ratings_port
+      s.puts request_json
+      response_json = s.gets
+      s.close
+    rescue Errno::ECONNREFUSED
+      raise 'Cannot connect to teeworlds-ratings server'
+    ensure
+      unless s.nil?
+        s.close
+      end
+    end
     parsed_response = JSON.parse(response_json, symbolize_names: true)
     if parsed_response[:message_type] == 'error' then
       raise parsed_response[:message_content]

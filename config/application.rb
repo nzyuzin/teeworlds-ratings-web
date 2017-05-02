@@ -36,5 +36,8 @@ module TeeworldsRatingsWeb
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.teeworlds_ratings_ip = '127.0.0.1'
+    config.teeworlds_ratings_port = 12488
   end
 end
