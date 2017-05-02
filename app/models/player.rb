@@ -30,7 +30,7 @@ class Player < TeeworldsEntity
     player_games = request_player_info(name)
     player = player_games[:player]
     res = self.parse player
-    res.games = player_games[:games].map { |game| Game.parse({:game => game}) }
+    res.games = player_games[:games].map { |game| Game.parse(game) }
     res
   end
 

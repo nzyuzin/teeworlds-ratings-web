@@ -17,9 +17,8 @@ class Game < TeeworldsEntity
 
   DATA_REQUEST_TYPE_GAME_INFO = 'game_info'
 
-  def self.parse(container_hash)
+  def self.parse(game_hash)
     res = Game.new
-    game_hash = container_hash[:game]
     res.id = game_hash[:game_id]
     res.gametype = game_hash[:gametype]
     res.map = game_hash[:map]
@@ -27,7 +26,6 @@ class Game < TeeworldsEntity
     res.result = game_hash[:game_result]
     res.date = game_hash[:game_date]
     res.rating_change = game_hash[:rating_change]
-    res.participants = container_hash[:participants].map {|p| Participant.parse p} unless container_hash[:participants].nil?
     res
   end
 
@@ -36,7 +34,10 @@ class Game < TeeworldsEntity
   end
 
   def self.game_info(id)
-    self.parse request_game_info(id)
+    game_info_hash = request_game_info(id)
+    res = self.parse game_info_hash[:game]
+    res.participants = game_info_hash[:participants].map {|p| Participant.parse p}
+    res
   end
 
 end
