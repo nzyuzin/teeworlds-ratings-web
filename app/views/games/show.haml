@@ -1,0 +1,34 @@
+%h2 Game
+
+%ul
+  %li
+    Gamtype:
+    = @game.gametype
+  %li
+    Map:
+    = @game.map
+  %li
+    Length:
+    = format_game_length @game.time
+  %li
+    Winner:
+    = @game.result
+  %li
+    Date:
+    = @game.date
+
+%h3 Participants:
+
+%table.ui.basic.table.game_participants
+  %thead
+    %tr
+      %th Name
+      %th Score
+      %th Team
+      %th Rating Change
+  - @game.participants.each do |p|
+    %tr
+      %td= link_to p.name, "/players/#{p.name}"
+      %td= p.score
+      %td= p.team
+      %td= if p.rating_change > 0 then "+" + p.rating_change.to_s else p.rating_change end

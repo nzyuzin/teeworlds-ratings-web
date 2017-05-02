@@ -14,6 +14,7 @@
 %table.ui.basic.table.games
   %thead
     %tr
+      %th ID
       %th Gametype
       %th Map
       %th Length
@@ -22,6 +23,7 @@
       %th Rating Change
   - @player.games.each do |game|
     %tr
+      %td= link_to game.id, "/games/#{game.id}"
       %td= game.gametype
       %td= game.map
       %td= format_game_length game.time

@@ -22,5 +22,7 @@ end
 
   get '/clans/:clan_name' => 'clans#show'
 
+  get '/games/:id' => 'games#show'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
