@@ -15,7 +15,9 @@ class Game < TeeworldsEntity
 
   attr_accessor :id, :gametype, :map, :time, :result, :date, :rating_change, :participants
 
-  DATA_REQUEST_TYPE_GAME_INFO = 'game_info'
+  DATA_REQUEST_TYPES = {}
+  DATA_REQUEST_TYPES[:game_info] = 'game_info'
+  DATA_REQUEST_TYPES[:games_by_date] = 'games_by_date'
 
   def self.parse(game_hash)
     res = Game.new
@@ -30,7 +32,7 @@ class Game < TeeworldsEntity
   end
 
   def self.request_game_info(id)
-    request_data(DATA_REQUEST_TYPE_GAME_INFO, {:game_id => id.to_i})
+    request_data(DATA_REQUEST_TYPES[:game_info], {:game_id => id.to_i})
   end
 
   def self.game_info(id)
@@ -38,6 +40,15 @@ class Game < TeeworldsEntity
     res = self.parse game_info_hash[:game]
     res.participants = game_info_hash[:participants].map {|p| Participant.parse p}
     res
+  end
+
+  def self.request_games_by_date(limit, offset)
+    request_data(DATA_REQUEST_TYPES[:games_by_date], {:limit => limit, :offset => offset})
+  end
+
+  def self.games_by_date(limit, offset)
+    games = request_games_by_date(limit, offset)
+    games.map {|g| Game.parse(g)}
   end
 
 end
