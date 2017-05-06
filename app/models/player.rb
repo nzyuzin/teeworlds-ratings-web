@@ -1,5 +1,6 @@
 class Player < TeeworldsEntity
-  attr_accessor :name, :clan, :rating, :games, :secret_key
+
+  attr_accessor :name, :clan, :rating, :games, :secret_key, :total_games, :stats
 
   REGISTRATION_REQUEST_TYPE = {:register => 'register', :name_available => 'name_available'}
 
@@ -27,10 +28,12 @@ class Player < TeeworldsEntity
   end
 
   def self.player_info(name)
-    player_games = request_player_info(name)
-    player = player_games[:player]
+    pinfo = request_player_info(name)
+    player = pinfo[:player]
     res = self.parse player
-    res.games = player_games[:games].map { |game| Game.parse(game) }
+    res.games = pinfo[:games].map { |game| Game.parse(game) }
+    res.total_games = pinfo[:total_games]
+    res.stats = Stats.parse(pinfo[:stats])
     res
   end
 

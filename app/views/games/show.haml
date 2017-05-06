@@ -26,9 +26,31 @@
       %th Score
       %th Team
       %th Rating Change
+      %th Hammer kills
+      %th Gun kills
+      %th Shotgun kills
+      %th Grenade kills
+      %th Rifle kills
+      %th Deaths
+      %th Suicides
+      %th Flag grabs
+      %th Flag captures
+      %th Flag returns
+      %th Flag carrier kills
   - @game.participants.each do |p|
     %tr
       %td= link_to p.name, "/players/#{p.name}"
       %td= p.score
       %td= p.team
       %td= if p.rating_change > 0 then "+" + p.rating_change.to_s else p.rating_change end
+      %td= p.stats.hammer_kills
+      %td= p.stats.gun_kills
+      %td= p.stats.shotgun_kills
+      %td= p.stats.grenade_kills
+      %td= p.stats.rifle_kills
+      %td= p.stats.deaths
+      %td= p.stats.suicides
+      %td= p.stats.flag_grabs
+      %td= p.stats.flag_captures
+      %td= p.stats.flag_returns
+      %td= p.stats.flag_carrier_kills

@@ -1,6 +1,6 @@
 class Game < TeeworldsEntity
   class Participant
-    attr_accessor :name, :score, :team, :rating_change
+    attr_accessor :name, :score, :team, :rating_change, :stats
 
     def self.parse(hash)
       res = Participant.new
@@ -8,6 +8,7 @@ class Game < TeeworldsEntity
       res.score = hash[:score]
       res.team = hash[:team]
       res.rating_change = hash[:rating_change]
+      res.stats = Stats.parse(hash[:stats])
       res
     end
 

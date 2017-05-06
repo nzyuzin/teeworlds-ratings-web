@@ -9,6 +9,39 @@
   %p= "Ingame key: #{@player.secret_key}"
   = link_to 'Edit profile', "/users/edit"
 
+%h4 Total games: #{@player.total_games}
+
+%h4 Overall stats
+
+%table.ui.basic.table.games
+  %thead
+    %tr
+      %th K/D
+      %th Hammer kills
+      %th Gun kills
+      %th Shotgun kills
+      %th Grenade kills
+      %th Rifle kills
+      %th Deaths
+      %th Suicides
+      %th Flag grabs
+      %th Flag captures
+      %th Flag returns
+      %th Flag carrier kills
+    %tr
+      %td= @player.stats.kd
+      %td= @player.stats.hammer_kills
+      %td= @player.stats.gun_kills
+      %td= @player.stats.shotgun_kills
+      %td= @player.stats.grenade_kills
+      %td= @player.stats.rifle_kills
+      %td= @player.stats.deaths
+      %td= @player.stats.suicides
+      %td= @player.stats.flag_grabs
+      %td= @player.stats.flag_captures
+      %td= @player.stats.flag_returns
+      %td= @player.stats.flag_carrier_kills
+
 %h4 Latest games
 
 %table.ui.basic.table.games
