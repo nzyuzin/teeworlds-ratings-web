@@ -1,5 +1,7 @@
 class Game < TeeworldsEntity
+
   class Participant
+
     attr_accessor :name, :score, :team, :rating_change, :stats
 
     def self.parse(hash)
@@ -15,6 +17,10 @@ class Game < TeeworldsEntity
   end
 
   attr_accessor :id, :gametype, :map, :time, :result, :date, :rating_change, :participants
+
+  def self.per_page
+    50
+  end
 
   DATA_REQUEST_TYPES = {}
   DATA_REQUEST_TYPES[:game_info] = 'game_info'
@@ -48,8 +54,18 @@ class Game < TeeworldsEntity
   end
 
   def self.games_by_date(limit, offset)
-    games = request_games_by_date(limit, offset)
-    games.map {|g| Game.parse(g)}
+    games_by_date_hash = request_games_by_date(limit, offset)
+    games = games_by_date_hash[:games].map {|g| Game.parse(g)}
+    total_games = games_by_date_hash[:total_games]
+    {:games => games, :total_games => total_games}
+  end
+
+  def self.paginate(page)
+    page = 1 if page.nil?
+    games_by_date_hash = games_by_date(per_page, (page.to_i - 1) * per_page)
+    WillPaginate::Collection.create(page, per_page, games_by_date_hash[:total_games]) do |pager|
+      pager.replace games_by_date_hash[:games]
+    end
   end
 
 end

@@ -1,7 +1,7 @@
 class PlayersController < ApplicationController
 
   def index
-    @players = Player.players_by_rating 50, 0
+    @players = Player.paginate(params[:page])
   end
 
   def show

@@ -1,7 +1,7 @@
 class GamesController < ApplicationController
 
   def index
-    @games = Game.games_by_date(50, 0)
+    @games = Game.paginate(params[:page])
   end
 
   def show

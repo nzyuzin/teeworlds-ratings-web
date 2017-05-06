@@ -2,6 +2,10 @@ class Player < TeeworldsEntity
 
   attr_accessor :name, :clan, :rating, :games, :secret_key, :total_games, :stats
 
+  def self.per_page
+    50
+  end
+
   REGISTRATION_REQUEST_TYPE = {:register => 'register', :name_available => 'name_available'}
 
   def self.build_registration_request(registration_request_type, content)
@@ -42,8 +46,18 @@ class Player < TeeworldsEntity
   end
 
   def self.players_by_rating(limit, offset)
-    players = request_players_by_rating(limit, offset)
-    players.map { |p| self.parse(p) }
+    response_hash = request_players_by_rating(limit, offset)
+    players = response_hash[:players].map { |p| self.parse(p) }
+    total_players = response_hash[:total_players]
+    {:players => players, :total_players => total_players}
+  end
+
+  def self.paginate(page)
+    page = 1 if page.nil?
+    players_by_rating_hash = players_by_rating(per_page, (page.to_i - 1) * per_page)
+    WillPaginate::Collection.create(page, per_page, players_by_rating_hash[:total_players]) do |pager|
+      pager.replace players_by_rating_hash[:players]
+    end
   end
 
   def self.request_name_available(name)

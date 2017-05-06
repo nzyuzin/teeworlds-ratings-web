@@ -17,3 +17,5 @@
       %td= format_game_length game.time
       %td= game.result
       %td= game.date
+
+= will_paginate @games, :class => '', :id => 'pagination'

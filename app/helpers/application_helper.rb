@@ -14,4 +14,13 @@ module ApplicationHelper
   def link_to_active_page(name, path, css_class='active')
     append_class_on_path :a, {:href => path}, name, path, css_class
   end
+
+  def page
+    if params[:page].nil? then
+      1
+    else
+      params[:page].to_i
+    end
+  end
+
 end
