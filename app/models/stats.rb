@@ -23,7 +23,8 @@ class Stats
   end
 
   def kd
-    if deaths == 0 then 0 else kills / deaths end
+    # "\u221E" -- infinity symbol
+    if deaths == 0 then "\u221E" else kills / deaths end
   end
 
 end
