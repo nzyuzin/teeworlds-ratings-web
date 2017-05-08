@@ -17,7 +17,7 @@ class User < ApplicationRecord
   end
 
   def register_player
-    Player.register(self.player_name, self.player_clan)
+    self.player_id = Player.register(self.player_name)
   end
 
 end

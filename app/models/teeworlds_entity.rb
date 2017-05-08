@@ -4,6 +4,13 @@ class TeeworldsEntity
   DATA_REQUEST_TYPE_PLAYERS_BY_RATING = 'players_by_rating'
   DATA_REQUEST_TYPE_CLAN_INFO = 'clan_info'
 
+  REGISTRATION_REQUEST_TYPE = {
+    :register => 'register',
+    :name_available => 'name_available',
+    :join_clan => 'join_clan',
+    :register_clan => 'register_clan'
+  }
+
   def self.send_request(request)
     request_json = JSON.generate(request)
     s = nil
@@ -40,6 +47,16 @@ class TeeworldsEntity
     request = build_data_request(data_request_type, content)
     response = send_request(request)
     response[:data_request_response_content]
+  end
+
+  def self.build_registration_request(registration_request_type, content)
+      build_external_request('registration_request', {:registration_request_type => registration_request_type, :registration_request_content => content})
+  end
+
+  def self.request_registration(registration_request_type, content)
+    request = build_registration_request(registration_request_type, content)
+    response = send_request(request)
+    response[:registration_request_response_content]
   end
 
 end

@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
 
   devise_for :users, :controllers => { :registrations => "registrations" }
-#Casein routes
-namespace :casein do
-    resources :news
-end
+
+  #Casein routes
+  namespace :casein do
+      resources :news
+  end
 
   root to: 'news#index'
 
@@ -18,9 +19,15 @@ end
 
   get '/players/:player_name' => 'players#show'
 
-  post '/players/claim_name' => 'players#claim_name'
+  get '/clans' => 'clans#index'
+
+  get '/clans/new' => 'clans#new'
+
+  post '/clans' => 'clans#create'
 
   get '/clans/:clan_name' => 'clans#show'
+
+  post '/clans/join/:clan_id' => 'clans#join'
 
   get '/games' => 'games#index'
 

@@ -1,0 +1,15 @@
+%h2 Registered clans
+
+%table.ui.basic.table
+  %thead
+    %tr
+      %th Rank
+      %th Name
+      %th Rating
+      %th Players
+  - @clans.each_index do |i|
+    %tr
+      %td= ((page - 1) * Clan.per_page) + i + 1
+      %td= link_to @clans[i].name "/clans/#{@clans[i].name}"
+      %td= @clans[i].rating
+      %td= @clans[i].players_number
