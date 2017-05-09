@@ -23,6 +23,7 @@ class Clan < TeeworldsEntity
     res = parse(clan[:clan])
     res.players = clan[:players].map { |p| Player.parse p }
     res.average_rating = clan[:average_rating]
+    res.clan_leader_id = clan[:clan_leader_id]
     res
   end
 

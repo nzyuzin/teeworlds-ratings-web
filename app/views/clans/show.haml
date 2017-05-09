@@ -1,9 +1,17 @@
 %h3= @clan.name
+%h4
+  Clan leader:
+  = link_to @clan_leader.player_name, player_path(@clan_leader.player_name)
 %h4= "Average rating #{@clan.average_rating}"
 
-%ul
+%h5 Players
+
+%table.ui.basic.table
+  %thead
+    %tr
+      %th Name
+      %th Rating
   - @players.each do |player|
-    %li
-      %span= player.name
-      %span= player.clan
-      %span= player.rating
+    %tr
+      %td= link_to player.name, player_path(player.name)
+      %td= player.rating

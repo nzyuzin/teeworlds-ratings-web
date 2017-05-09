@@ -9,6 +9,7 @@ class ClansController < ApplicationController
     clan_name = params[:clan_name]
     @clan = Clan.clan_info(clan_name)
     @players = @clan.players
+    @clan_leader = User.find_by(player_id: @clan.clan_leader_id)
   end
 
   def new

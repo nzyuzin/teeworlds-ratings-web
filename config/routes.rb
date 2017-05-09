@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   get '/players' => 'players#index'
 
-  get '/players/:player_name' => 'players#show'
+  get '/players/:player_name', to: 'players#show', as: 'player'
 
   get '/clans' => 'clans#index'
 
@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
   post '/clans' => 'clans#create'
 
-  get '/clans/:clan_name' => 'clans#show'
+  get '/clans/:clan_name', to: 'clans#show', as: 'clan'
 
   post '/clans/join/:clan_id' => 'clans#join'
 
