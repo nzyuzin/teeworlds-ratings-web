@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   get '/clans' => 'clans#index'
 
-  get '/clans/new' => 'clans#new'
+  get '/clans/new', to: 'clans#new', as: 'new_clan'
 
   post '/clans' => 'clans#create'
 
@@ -31,7 +31,7 @@ Rails.application.routes.draw do
 
   get '/games' => 'games#index'
 
-  get '/games/:id' => 'games#show'
+  get '/games/:id', to: 'games#show', as: 'game'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

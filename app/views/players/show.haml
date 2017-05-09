@@ -2,8 +2,8 @@
   = @player.name
   - if @user.country
     = content_tag(:i, '', class: "#{@user.country.downcase} flag")
-- unless @player.clan.blank?
-  %h4= link_to @player.clan, "/clans/#{encode_url @player.clan}"
+
+%h4= link_to @player.clan, clan_path(@player.clan) unless @player.clan.blank?
 %h5= @player.rating
 
 - if user_signed_in? && @user.id == current_user.id
@@ -11,7 +11,7 @@
   = link_to 'Edit profile', "/users/edit"
 
 - if @player.clan.blank?
-  = link_to 'Create a clan', "/clans/new"
+  = link_to 'Create a clan', new_clan_path
 
 %h4 Total games: #{@player.total_games}
 
@@ -60,7 +60,7 @@
       %th Rating Change
   - @player.games.each do |game|
     %tr
-      %td= link_to game.id, "/games/#{game.id}"
+      %td= link_to game.id, game_path(game.id)
       %td= game.gametype
       %td= game.map
       %td= format_game_length game.time

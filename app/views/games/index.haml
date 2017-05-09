@@ -11,7 +11,7 @@
       %th Date
   - @games.each do |game|
     %tr
-      %td= link_to game.id, "/games/#{game.id}"
+      %td= link_to game.id, game_path(game.id)
       %td= game.gametype
       %td= game.map
       %td= format_game_length game.time

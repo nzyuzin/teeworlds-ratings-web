@@ -8,9 +8,7 @@
     - @players.each_index do |i|
       %tr
         %td= ((page - 1) * Player.per_page) + i + 1
-        %td
-          %a{href: "players/#{encode_url @players[i].name}"}= @players[i].name
-        %td
-          %a{href: "clans/#{encode_url @players[i].clan}"}= @players[i].clan
+        %td= link_to @players[i].name, player_path(@players[i].name)
+        %td= link_to @players[i].clan, clan_path(@players[i].clan) unless @players[i].clan.blank?
         %td= @players[i].rating.to_s
 = will_paginate @players, :class => '', :id => 'pagination'
