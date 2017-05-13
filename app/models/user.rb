@@ -5,19 +5,25 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :timeoutable, :lockable
 
-  validates :player_name, :presence => true
-  validate :player_name_should_be_available
+  has_one :player
+  accepts_nested_attributes_for :player
 
+  validate :player_name_should_be_available
   before_create :register_player
 
   def player_name_should_be_available
-    unless Player.name_available?(self.player_name)
-      errors.add(:player_name, "This player name is already in use")
+    unless Player.name_available?(player)
+      errors.add(:player, "This player name is already in use")
     end
   end
 
   def register_player
-    self.player_id = Player.register(self.player_name)
+    Player.register(player)
+  end
+
+  def with_empty_player
+    self.player = Player.new
+    self
   end
 
 end

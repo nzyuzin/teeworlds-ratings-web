@@ -1,4 +1,6 @@
-class Game < TeeworldsEntity
+class Game
+
+  extend TeeworldsEntity
 
   class Participant
 

@@ -9,7 +9,7 @@ class ClansController < ApplicationController
     clan_name = params[:clan_name]
     @clan = Clan.clan_info(clan_name)
     @players = @clan.players
-    @clan_leader = User.find_by(player_id: @clan.clan_leader_id)
+    @clan_leader = Player.find(@clan.clan_leader_id)
   end
 
   def new
@@ -17,12 +17,17 @@ class ClansController < ApplicationController
   end
 
   def create
-    clan = params[:clan]
-    Clan.register(clan[:name], clan[:description], current_user.player_id)
+    clan = Clan.new(params[:clan].permit(:name, :about))
+    player = current_user.player
+    Clan.register(clan, player.remote_id)
+    player.clan = clan
+    clan.save!
+    player.save!
   end
 
   def join
-    Player.join_clan(current_user.player_id, params[:clan_id])
+    clan = Clan.find_by(params[:clan_id])
+    Player.join_clan(current_user.player, clan)
   end
 
 end

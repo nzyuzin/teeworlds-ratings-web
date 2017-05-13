@@ -1,16 +1,16 @@
 %h3
   = @player.name
-  - if @user.country
-    = content_tag(:i, '', class: "#{@user.country.downcase} flag")
+  - if @player.country
+    = content_tag(:i, '', class: "#{@player.country.downcase} flag")
 
-%h4= link_to @player.clan, clan_path(@player.clan) unless @player.clan.blank?
+%h4= link_to @player.clan.name, clan_path(@player.clan.name) unless @player.clan.nil?
 %h5= @player.rating
 
 - if user_signed_in? && @user.id == current_user.id
   %p= "Ingame key: #{@player.secret_key}"
   = link_to 'Edit profile', "/users/edit"
 
-- if @player.clan.blank?
+- if @player.clan.nil?
   = link_to 'Create a clan', new_clan_path
 
 %h4 Total games: #{@player.total_games}

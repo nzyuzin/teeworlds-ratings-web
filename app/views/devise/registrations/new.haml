@@ -1,15 +1,16 @@
 %h2 Sign up
-= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "ui form"}) do |f|
+= form_for(resource.with_empty_player, as: resource_name, url: registration_path(resource_name), html: {class: "ui form"}) do |f|
   = devise_error_messages!
   .field
     = f.label :email
     = f.email_field :email, autofocus: true
-  .field
-    = f.label :player_name
-    = f.text_field :player_name
-  .field
-    = f.label :country
-    = f.country_select :country, {include_blank: 'Select a country'}, {class: "ui fluid dropdown"}
+  = f.fields_for(:player) do |p|
+    .field
+      = p.label :name
+      = p.text_field :name
+    .field
+      = p.label :country
+      = p.country_select :country, {include_blank: 'Select a country'}, {class: "ui fluid dropdown"}
   .two.fields
     .field
       = f.label :password

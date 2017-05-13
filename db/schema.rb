@@ -41,11 +41,29 @@ ActiveRecord::Schema.define(version: 20170430075319) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "clans", force: :cascade do |t|
+    t.string   "name",                   default: "", null: false
+    t.integer  "remote_id",              default: -1, null: false
+    t.text     "about"
+    t.index ["name"], name: "index_clans_on_name", unique: true
+    t.index ["remote_id"], name: "index_clans_on_remote_id", unique: true
+  end
+
+  create_table "players", force: :cascade do |t|
+    t.belongs_to :user,                  index: { unique: true }, foreign_key: true
+    t.string   "name",                   default: "", null: false
+    t.integer  "remote_id",              default: -1, null: false
+    t.belongs_to :clan,                  foreign_key: true
+    t.text     "about"
+    t.string   "country"
+    t.timestamps
+    t.index ["name"], name: "index_players_on_name", unique: true
+    t.index ["remote_id"], name: "index_players_on_remote_id", unique: true
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
-    t.string   "player_name",            default: "", null: false
-    t.integer  "player_id",              default: -1, null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -63,11 +81,8 @@ ActiveRecord::Schema.define(version: 20170430075319) do
     t.datetime "locked_at"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.string   "country"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["player_name"], name: "index_users_on_player_name", unique: true
-    t.index ["player_id"], name: "index_users_on_player_id", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end

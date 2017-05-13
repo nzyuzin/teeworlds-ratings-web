@@ -27,7 +27,7 @@ Rails.application.routes.draw do
 
   get '/clans/:clan_name', to: 'clans#show', as: 'clan'
 
-  post '/clans/join/:clan_id' => 'clans#join'
+  post '/clans/join/:clan_id' => 'clans#join', as: 'join_clan'
 
   get '/games' => 'games#index'
 

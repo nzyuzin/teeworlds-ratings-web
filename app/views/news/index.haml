@@ -27,12 +27,6 @@
         .center.aligned.column
           = link_to (content_tag(:i, '', class: "signup icon") + 'Sign up'), new_user_registration_path, :class => "ui big green labeled icon button"
 
-    - if user_signed_in?
-      %p
-        Hello,
-        = link_to current_user.player_name, "/players/#{current_user.player_name}"
-        = link_to('Sign out', destroy_user_session_path, :method => :delete)
-
     %h1 Teeworlds Ladder
 
     %h2 News:

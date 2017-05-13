@@ -3,7 +3,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   protected
     def configure_permitted_parameters
-      devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:player_name, :country, :email, :password) }
-      devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:country, :email, :password, :password_confirmation, :current_password) }
+      devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:email, :password, player_attributes: [:name, :country]) }
+      devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:email, :password, :password_confirmation, :current_password) }
     end
 end

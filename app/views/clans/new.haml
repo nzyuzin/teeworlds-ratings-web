@@ -1,9 +1,11 @@
+%h3 New clan
+
 = form_for(@clan, as: 'clan', url: '/clans', html: {class: "ui form"}) do |f|
   .field
     = f.label :name
     = f.text_field :name
   .field
-    = f.label :description
-    = f.text_area :description
+    = f.label :about
+    = f.text_area :about
   .actions
     = f.submit "Create", class: "ui blue submit button"
