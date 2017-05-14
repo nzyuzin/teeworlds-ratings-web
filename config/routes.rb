@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   get '/clans/new', to: 'clans#new', as: 'new_clan'
   post '/clans' => 'clans#create'
   get '/clans/:clan_name', to: 'clans#show', as: 'clan'
-  post '/clans/join/:clan_id' => 'clans#join', as: 'join_clan'
+  post '/clans/:clan_id/join' => 'clans#join', as: 'join_clan'
 
   get '/games' => 'games#index'
   get '/games/:id', to: 'games#show', as: 'game'
