@@ -1,0 +1,7 @@
+%h4 Edit player profile
+
+= simple_form_for @player, url: player_path(@player.name), html: {class: 'ui form'} do |f|
+  .field= f.input :about
+  .field= f.input :country
+  .field= f.input :avatar, as: :file
+  = f.button :submit, 'Submit', class: 'ui blue submit button'

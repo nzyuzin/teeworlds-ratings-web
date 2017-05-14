@@ -16,6 +16,9 @@ class Player < ApplicationRecord
   belongs_to :user
   belongs_to :clan
 
+  has_attached_file :avatar, styles: { medium: "150x150>", thumb: "90x90>" }, default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
+
   attr_accessor :rating, :games, :secret_key, :total_games, :stats
 
   def self.per_page
@@ -81,6 +84,10 @@ class Player < ApplicationRecord
     end
     player.clan = clan
     player.save!
+  end
+
+  def to_param
+    name
   end
 
 end

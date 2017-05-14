@@ -10,4 +10,13 @@ class PlayersController < ApplicationController
     @user = Player.find_by(name: player_name).user
   end
 
+  def edit
+    @player = Player.find_by(name: params[:player_name])
+  end
+
+  def update
+    player = Player.find_by(name: params[:player_name])
+    player.update(params[:player].permit(:about, :country, :avatar))
+  end
+
 end

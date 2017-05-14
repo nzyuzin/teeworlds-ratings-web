@@ -1,5 +1,5 @@
 %h2
-  Edit #{resource_name.to_s.humanize}
+  Edit #{resource_name.to_s.humanize} information
 = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "ui form" }) do |f|
   = devise_error_messages!
   .field
@@ -8,9 +8,6 @@
   - if devise_mapping.confirmable? && resource.pending_reconfirmation?
     %div
       Currently waiting confirmation for: #{resource.unconfirmed_email}
-  .field
-    = f.label :country
-    = f.country_select :country, {include_blank: true}, {class: "ui fluid dropdown"}
   .two.fields
     .field
       = f.label :password
@@ -29,7 +26,7 @@
     = f.password_field :current_password, autocomplete: "off"
   .actions
     = f.submit "Update", class: "ui blue submit button"
-%h3 Cancel my account
-%p
-  Unhappy? #{button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "ui red submit button"}
-= link_to "Back", :back
+%h3 Unhappy?
+%p= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "ui red submit button"
+
+%p= link_to "Back", :back

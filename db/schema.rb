@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170430075319) do
+ActiveRecord::Schema.define(version: 20170514085537) do
 
   create_table "casein_admin_users", force: :cascade do |t|
     t.string   "login",                           null: false
@@ -34,6 +34,14 @@ ActiveRecord::Schema.define(version: 20170430075319) do
     t.datetime "updated_at"
   end
 
+  create_table "clans", force: :cascade do |t|
+    t.string  "name",      default: "", null: false
+    t.integer "remote_id", default: -1, null: false
+    t.text    "about"
+    t.index ["name"], name: "index_clans_on_name", unique: true
+    t.index ["remote_id"], name: "index_clans_on_remote_id", unique: true
+  end
+
   create_table "news", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
@@ -41,24 +49,23 @@ ActiveRecord::Schema.define(version: 20170430075319) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "clans", force: :cascade do |t|
-    t.string   "name",                   default: "", null: false
-    t.integer  "remote_id",              default: -1, null: false
-    t.text     "about"
-    t.index ["name"], name: "index_clans_on_name", unique: true
-    t.index ["remote_id"], name: "index_clans_on_remote_id", unique: true
-  end
-
   create_table "players", force: :cascade do |t|
-    t.belongs_to :user,                  index: { unique: true }, foreign_key: true
-    t.string   "name",                   default: "", null: false
-    t.integer  "remote_id",              default: -1, null: false
-    t.belongs_to :clan,                  foreign_key: true
+    t.integer  "user_id"
+    t.string   "name",                default: "", null: false
+    t.integer  "remote_id",           default: -1, null: false
+    t.integer  "clan_id"
     t.text     "about"
     t.string   "country"
-    t.timestamps
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.index ["clan_id"], name: "index_players_on_clan_id"
     t.index ["name"], name: "index_players_on_name", unique: true
     t.index ["remote_id"], name: "index_players_on_remote_id", unique: true
+    t.index ["user_id"], name: "index_players_on_user_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|

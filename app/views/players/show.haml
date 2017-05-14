@@ -1,19 +1,29 @@
-%h3
-  = @player.name
-  - if @player.country
-    = content_tag(:i, '', class: "#{@player.country.downcase} flag")
+.ui.basic.segment
+  = image_tag @player.avatar.url(:medium), class: 'ui small right floated image'
 
-%h4= link_to @player.clan.name, clan_path(@player.clan.name) unless @player.clan.nil?
-%h5= @player.rating
+  %h3
+    = @player.name
+    - if @player.country
+      = content_tag(:i, '', class: "#{@player.country.downcase} flag")
 
-- if user_signed_in? && @user.id == current_user.id
-  %p= "Ingame key: #{@player.secret_key}"
-  = link_to 'Edit profile', "/users/edit"
+  %h4= link_to @player.clan.name, clan_path(@player.clan.name) unless @player.clan.nil?
 
-- if @player.clan.nil?
-  = link_to 'Create a clan', new_clan_path
+  - unless @player.about.nil?
+    %h4 About #{@player.name}
+    .ui.basic.segment
+      = @player.about
 
-%h4 Total games: #{@player.total_games}
+  - if user_signed_in? && @user.id == current_user.id
+    - if @player.clan.nil?
+      %p= link_to 'Create a clan', new_clan_path
+    %p= "Ingame key: #{@player.secret_key}"
+    .ui.horizontal.list
+      .item.content= link_to 'Edit user information', edit_user_registration_path
+      .item.content= link_to 'Edit player profile', edit_player_path(@player.name)
+
+  %h4 Total games: #{@player.total_games}
+
+  %h4 Rating: #{@player.rating}
 
 %h4 Overall stats
 
