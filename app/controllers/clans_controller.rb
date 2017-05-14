@@ -23,11 +23,13 @@ class ClansController < ApplicationController
     player.clan = clan
     clan.save!
     player.save!
+    redirect_to clan_path(clan.name)
   end
 
   def join
     clan = Clan.find_by(params[:clan_id])
     Player.join_clan(current_user.player, clan)
+    redirect_to clan_path(clan.name)
   end
 
 end

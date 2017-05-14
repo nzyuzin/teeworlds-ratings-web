@@ -17,6 +17,7 @@ class PlayersController < ApplicationController
   def update
     player = Player.find_by(name: params[:player_name])
     player.update(params[:player].permit(:about, :country, :avatar))
+    redirect_to player_path(player)
   end
 
 end
