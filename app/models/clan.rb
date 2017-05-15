@@ -8,8 +8,9 @@ class Clan < ApplicationRecord
   }
 
   has_many :players
+  has_many :clan_leaders
 
-  attr_accessor :sub_clan_id, :players, :average_rating, :clan_leader_id
+  attr_accessor :sub_clan_id, :average_rating
 
   def self.parse(clan_hash)
     res = Clan.find_by(remote_id: clan_hash[:id])
@@ -20,8 +21,8 @@ class Clan < ApplicationRecord
     res
   end
 
-  def self.register(clan, clan_leader_id)
-    body = {:name => clan.name, :clan_leader => clan_leader_id}
+  def self.register(clan, clan_leader)
+    body = {:name => clan.name, :clan_leader => clan_leader.remote_id}
     remote_id = request_registration(REGISTRATION_REQUEST_TYPE[:register_clan], body)
     if remote_id.nil?
       fail 'Could not register clan in the remote db!'
@@ -38,7 +39,6 @@ class Clan < ApplicationRecord
     res = parse(clan[:clan])
     res.players = clan[:players].map { |p| Player.parse p }
     res.average_rating = clan[:average_rating]
-    res.clan_leader_id = clan[:clan_leader_id]
     res
   end
 

@@ -1,7 +1,5 @@
 %h3= @clan.name
-%h4
-  Clan leader:
-  = link_to @clan_leader.name, player_path(@clan_leader.name)
+%h4= simple_format "Clan leaders: #{(@clan_leaders.map { |cl| link_to cl.player.name, player_path(cl.player.name) }).join ', '}"
 %h4= "Average rating #{@clan.average_rating}"
 
 %p= @clan.about

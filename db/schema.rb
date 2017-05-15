@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170514085537) do
+ActiveRecord::Schema.define(version: 20170515103657) do
 
   create_table "casein_admin_users", force: :cascade do |t|
     t.string   "login",                           null: false
@@ -32,6 +32,13 @@ ActiveRecord::Schema.define(version: 20170514085537) do
     t.string   "time_zone"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "clan_leaders", force: :cascade do |t|
+    t.integer "clan_id"
+    t.integer "player_id"
+    t.index ["clan_id"], name: "index_clan_leaders_on_clan_id"
+    t.index ["player_id"], name: "index_clan_leaders_on_player_id", unique: true
   end
 
   create_table "clans", force: :cascade do |t|
