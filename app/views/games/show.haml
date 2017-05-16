@@ -41,7 +41,14 @@
     %tr
       %td= link_to p.name, "/players/#{p.name}"
       %td= p.score
-      %td= p.team
+      %td
+        - if p.team == 'RED' then
+          .ui.red.label
+        - else
+          - if p.team == 'BLUE'
+            .ui.blue.label
+          - else
+            = p.team
       %td= if p.rating_change > 0 then "+" + p.rating_change.to_s else p.rating_change end
       %td= p.stats.hammer_kills
       %td= p.stats.gun_kills
