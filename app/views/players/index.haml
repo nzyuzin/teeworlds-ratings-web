@@ -4,11 +4,13 @@
       %th Rank
       %th Nickname
       %th Clan
-      %th Rating
+      %th CTF Rating
+      %th DM Rating
     - @players.each_index do |i|
       %tr
         %td= ((page - 1) * Player.per_page) + i + 1
         %td= link_to @players[i].name, player_path(@players[i].name)
         %td= link_to @players[i].clan.name, clan_path(@players[i].clan.name) unless @players[i].clan.nil?
-        %td= @players[i].rating.to_s
+        %td= @players[i].ctf_rating
+        %td= @players[i].dm_rating
 = will_paginate @players, :class => '', :id => 'pagination'

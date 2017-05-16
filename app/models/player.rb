@@ -19,7 +19,7 @@ class Player < ApplicationRecord
   has_attached_file :avatar, styles: { medium: "150x150>", thumb: "90x90>" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
-  attr_accessor :rating, :games, :secret_key, :total_games, :stats
+  attr_accessor :ctf_rating, :dm_rating, :games, :secret_key, :total_games, :stats
 
   def self.per_page
     50
@@ -34,7 +34,8 @@ class Player < ApplicationRecord
             res.clan_id == player_hash[:clan_id]) then # or the same
       fail 'Fetched clan_id doesn\'t match the one in db!'
     end
-    res.rating = player_hash[:rating]
+    res.ctf_rating = player_hash[:ctf_rating]
+    res.dm_rating = player_hash[:dm_rating]
     res.secret_key = player_hash[:secret_key]
     res
   end
