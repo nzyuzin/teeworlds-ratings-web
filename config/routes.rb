@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   get '/about' => 'about#index'
   get '/howto' => 'about#howto'
 
-  get '/players' => 'players#index'
+  get '/ctf/players' => 'players#index_ctf'
+  get '/dm/players' => 'players#index_dm'
   get '/players/:player_name', to: 'players#show', as: 'player'
   put '/players/:player_name', to: 'players#update'
   patch '/players/:player_name', to: 'players#update'

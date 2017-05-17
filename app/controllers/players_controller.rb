@@ -1,7 +1,11 @@
 class PlayersController < ApplicationController
 
-  def index
-    @players = Player.paginate(params[:page])
+  def index_ctf
+    @players = Player.paginate_ctf(params[:page])
+  end
+
+  def index_dm
+    @players = Player.paginate_ctf(params[:page])
   end
 
   def show

@@ -50,19 +50,27 @@ class Player < ApplicationRecord
     res
   end
 
-  def self.players_by_rating(limit, offset)
-    response_hash = request_data(DATA_REQUEST_TYPE[:players_by_rating], {:limit => limit, :offset => offset})
+  def self.players_by_rating(limit, offset, rating_type)
+    response_hash = request_data(DATA_REQUEST_TYPE[:players_by_rating], {:limit => limit, :offset => offset, :rating => rating_type})
     players = response_hash[:players].map { |p| Player.parse(p) }
     total_players = response_hash[:total_players]
     {:players => players, :total_players => total_players}
   end
 
-  def self.paginate(page)
+  def self.paginate(page, rating)
     page = 1 if page.nil?
-    players_by_rating_hash = players_by_rating(per_page, (page.to_i - 1) * per_page)
+    players_by_rating_hash = players_by_rating(per_page, (page.to_i - 1) * per_page, rating)
     WillPaginate::Collection.create(page, per_page, players_by_rating_hash[:total_players]) do |pager|
       pager.replace players_by_rating_hash[:players]
     end
+  end
+
+  def self.paginate_ctf(page)
+    paginate(page, 'ctf')
+  end
+
+  def self.paginate_dm(page)
+    paginate(page, 'dm')
   end
 
   def self.name_available?(player)
