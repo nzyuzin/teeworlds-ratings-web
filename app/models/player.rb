@@ -16,7 +16,7 @@ class Player < ApplicationRecord
   belongs_to :user
   belongs_to :clan
 
-  has_attached_file :avatar, styles: { medium: "150x150>", thumb: "90x90>" }, default_url: "/images/:style/missing.png"
+  has_attached_file :avatar, styles: { medium: "150x150>", thumb: "90x90>" }, default_url: "/assets/missing_:style.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
   attr_accessor :ctf_rating, :dm_rating, :games, :secret_key, :total_games, :stats
